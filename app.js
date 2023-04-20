@@ -1,5 +1,15 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
+
+const { logger } = require("./middlewares/logger");
+const errorHandler = require("./middlewares/errorHandler");
+
 const app = express();
+
+// middlewares
+app.use(logger);
+app.use(express.json());
+app.use(cookieParser());
 
 app.get("^/$|/index(.html)?", (req, res) => {
   res.send("<body style='background-color:hotpink'><h1>Hello From Backend</h1></body>");
@@ -15,5 +25,7 @@ app.all("*", (req, res) => {
     res.type("txt").send("404 NOT FOUND");
   }
 });
+
+app.use(errorHandler);
 
 module.exports = app;
