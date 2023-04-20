@@ -1,5 +1,8 @@
 const express = require("express");
 const app = express();
+const { logger } = require("./middlewares/logger");
+
+app.use(logger);
 
 app.get("^/$|/index(.html)?", (req, res) => {
   res.send("<body style='background-color:hotpink'><h1>Hello From Backend</h1></body>");
