@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const { logger } = require("./middlewares/logger");
+const errorHandler = require("./middlewares/errorHandler");
 
 app.use(logger);
 
@@ -18,5 +19,7 @@ app.all("*", (req, res) => {
     res.type("txt").send("404 NOT FOUND");
   }
 });
+
+app.use(errorHandler);
 
 module.exports = app;
