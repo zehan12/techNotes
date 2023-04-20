@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 const { logger } = require("./middlewares/logger");
 const errorHandler = require("./middlewares/errorHandler");
@@ -10,6 +11,7 @@ const app = express();
 app.use(logger);
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 
 app.get("^/$|/index(.html)?", (req, res) => {
   res.send("<body style='background-color:hotpink'><h1>Hello From Backend</h1></body>");
