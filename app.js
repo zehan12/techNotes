@@ -18,6 +18,10 @@ app.get("^/$|/index(.html)?", (req, res) => {
   res.send("<body style='background-color:hotpink'><h1>Hello From Backend</h1></body>");
 });
 
+// routes
+app.use("/user", require("./routes/userRoutes"));
+app.use("/notes", require("./routes/notesRoutes"));
+
 app.all("*", (req, res) => {
   res.status(404);
   if (req.accepts("html")) {
